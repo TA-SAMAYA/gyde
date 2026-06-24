@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Первые $100 на ногах — G.CODE</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #7c4dff;
+    --purple-light: #b39dff;
+    --purple-pale: #f0ebff;
+    --purple-mid: #e8e0ff;
+    --blue: #3d6bff;
+    --text-dark: #1a1a2e;
+    --text-mid: #4a4a6a;
+    --text-light: #8888aa;
+    --border: #e8e4f0;
+    --bg: #ffffff;
+    --bg-soft: #fafaff;
+    --bg-card: #ffffff;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0d1540 0%, #1a1060 100%);
+    color: #fff;
+    padding: 56px 24px 52px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(124,77,255,0.35) 0%, transparent 70%);
+  }
+  .hero-inner { position: relative; max-width: 620px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(124,77,255,0.25);
+    border: 1px solid rgba(124,77,255,0.5);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #c8b4ff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 7vw, 42px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 span { color: #b39dff; }
+  .hero p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.7);
+    max-width: 480px;
+    margin: 0 auto 28px;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 800; color: #fff; }
+  .stat-num span { color: #b39dff; }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+  /* MAIN CONTENT */
+  .container { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+  /* SECTION HEADER */
+  .section { padding: 44px 0 0; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .section-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--purple-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-icon i { font-size: 20px; color: var(--purple); }
+  .section-header h2 { font-size: 20px; font-weight: 700; color: var(--text-dark); }
+  .section-header p { font-size: 14px; color: var(--text-light); margin-top: 2px; }
+
+  /* MIND CARD */
+  .mind-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .mind-card .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--purple);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .mind-card p { font-size: 15px; color: var(--text-mid); }
+  .mind-card strong { color: var(--text-dark); }
+
+  /* BUDGET LIST */
+  .budget-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .budget-item {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-mid);
+    font-weight: 500;
+  }
+  .budget-item i { font-size: 18px; color: var(--purple); flex-shrink: 0; }
+
+  .price-badge {
+    display: inline-block;
+    background: var(--purple-pale);
+    color: var(--purple);
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 3px 8px;
+    margin-top: 12px;
+  }
+
+  /* PLATFORM CARD */
+  .platform-card {
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .platform-card.featured { border-color: var(--purple); }
+  .platform-header {
+    padding: 18px 22px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .platform-header h3 { font-size: 17px; font-weight: 700; color: var(--text-dark); }
+  .platform-header p { font-size: 13px; color: var(--text-light); margin-top: 2px; }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 4px 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .tag-rec { background: var(--purple-pale); color: var(--purple); }
+  .tag-soon { background: #fff3e0; color: #e65100; }
+
+  .platform-body { padding: 18px 22px; }
+
+  .pro-con-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .pros, .cons {
+    background: var(--bg-soft);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .pros-label, .cons-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+  }
+  .pros-label { color: #2e7d32; }
+  .cons-label { color: #c62828; }
+  .pros li, .cons li {
+    font-size: 13px;
+    color: var(--text-mid);
+    margin-bottom: 5px;
+    padding-left: 14px;
+    position: relative;
+    list-style: none;
+  }
+  .pros li::before { content: '✓'; position: absolute; left: 0; color: #43a047; font-weight: 700; }
+  .cons li::before { content: '×'; position: absolute; left: 0; color: #e53935; font-weight: 700; }
+
+  /* STEP LIST */
+  .steps { margin: 0; padding: 0; list-style: none; }
+  .step-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step-item:last-child { border-bottom: none; }
+  .step-num {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--purple-pale);
+    border: 1.5px solid rgba(124,77,255,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--purple);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-item strong { display: block; font-size: 15px; font-weight: 600; color: var(--text-dark); margin-bottom: 3px; }
+  .step-item span { font-size: 13px; color: var(--text-light); }
+
+  /* PLAN TIMELINE */
+  .timeline { margin-top: 4px; }
+  .tl-item {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-days {
+    min-width: 72px;
+    background: var(--purple-pale);
+    border-radius: 10px;
+    padding: 6px 10px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--purple);
+  }
+  .tl-body strong { display: block; font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+  .tl-body span { font-size: 13px; color: var(--text-light); }
+
+  /* IDEAS GRID */
+  .ideas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .idea-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .idea-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--purple-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--purple);
+    flex-shrink: 0;
+  }
+  .idea-card span { font-size: 13px; color: var(--text-mid); font-weight: 500; }
+
+  /* SAFETY */
+  .safety-list { display: flex; flex-direction: column; gap: 10px; }
+  .safety-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    font-size: 14px;
+    color: var(--text-mid);
+    font-weight: 500;
+  }
+  .safety-item i { font-size: 20px; color: var(--purple); }
+
+  /* NOTE BOX */
+  .note {
+    background: var(--purple-pale);
+    border: 1px solid rgba(124,77,255,0.2);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #5a3ea0;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-top: 14px;
+  }
+  .note i { font-size: 18px; color: var(--purple); flex-shrink: 0; margin-top: 1px; }
+
+  /* CTA / CHAT SECTION */
+  .cta-section {
+    background: linear-gradient(135deg, #0d1540 0%, #1a1060 100%);
+    margin-top: 52px;
+    padding: 48px 24px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 50% 100%, rgba(124,77,255,0.3) 0%, transparent 70%);
+  }
+  .cta-inner { position: relative; max-width: 500px; margin: 0 auto; }
+  .cta-section h2 { font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 12px; line-height: 1.3; }
+  .cta-section h2 span { color: #b39dff; }
+  .cta-section p { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 28px; }
+
+  .chat-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+  .chat-step {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .chat-step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(124,77,255,0.35);
+    border: 1.5px solid rgba(179,157,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #c8b8ff;
+    flex-shrink: 0;
+  }
+  .chat-step strong { display: block; font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+  .chat-step span { font-size: 13px; color: rgba(255,255,255,0.55); }
+
+  .password-box {
+    background: rgba(10, 16, 56, 0.7);
+    border: 1px solid rgba(61,107,255,0.4);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 24px;
+  }
+  .password-box .pw-label { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .password-box .pw-value { font-size: 32px; font-weight: 900; color: #fff; letter-spacing: 8px; }
+
+  .btn-chat {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #7c4dff;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 16px 32px;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: transform 0.15s, opacity 0.15s;
+    width: 100%;
+    max-width: 400px;
+  }
+  .btn-chat:hover { opacity: 0.9; }
+  .btn-chat:active { transform: scale(0.98); }
+  .btn-chat i { font-size: 22px; }
+
+  .pw-note {
+    margin-top: 14px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .pw-note i { font-size: 14px; color: rgba(124,77,255,0.7); }
+
+  /* DIVIDER */
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 40px 0 0;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 13px;
+    color: var(--text-light);
+  }
+
+  /* UPSELL */
+  .upsell-section {
+    background: linear-gradient(135deg, #fffbf0 0%, #fff8e1 100%);
+    border-top: 3px solid #ffb300;
+    padding: 52px 24px;
+    text-align: center;
+  }
+  .upsell-inner { max-width: 620px; margin: 0 auto; }
+  .upsell-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #b45309;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .upsell-section h2 {
+    font-size: clamp(22px, 5vw, 32px);
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+  .upsell-section h2 span { color: #7c4dff; }
+  .upsell-section > .upsell-inner > p {
+    font-size: 16px;
+    color: #5a4a2e;
+    margin-bottom: 28px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .upsell-card {
+    background: #fff;
+    border: 2px solid #ffc107;
+    border-radius: 22px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    text-align: left;
+    box-shadow: 0 8px 32px rgba(255,193,7,0.15);
+  }
+  .upsell-card-header {
+    background: linear-gradient(135deg, #1a1060 0%, #0d1540 100%);
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .upsell-card-header h3 { font-size: 18px; font-weight: 800; color: #fff; }
+  .upsell-card-header p { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 3px; }
+  .price-block { text-align: right; }
+  .price-main { font-size: 28px; font-weight: 900; color: #ffd54f; line-height: 1; }
+  .price-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+  .upsell-card-body { padding: 22px 24px; }
+  .includes-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #b45309;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+  .includes-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .include-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: #3a2a0a;
+  }
+  .include-item i { font-size: 18px; color: #7c4dff; flex-shrink: 0; margin-top: 1px; }
+  .include-item strong { font-weight: 600; }
+  .include-item span { color: #6a5a3a; font-size: 13px; display: block; }
+  .gift-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f0ebff;
+    border: 1.5px solid rgba(124,77,255,0.4);
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #5a2ea0;
+    margin-bottom: 20px;
+    width: 100%;
+    justify-content: center;
+  }
+  .gift-badge i { font-size: 16px; color: var(--purple); }
+  .buy-btns { display: flex; flex-direction: column; gap: 10px; }
+  .btn-buy-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #7c4dff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px 24px;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .btn-buy-main:hover { opacity: 0.9; }
+  .btn-buy-main:active { transform: scale(0.98); }
+  .btn-buy-tg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #fff;
+    color: #1a1a2e;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 24px;
+    border-radius: 14px;
+    text-decoration: none;
+    border: 2px solid #e8e4f0;
+    transition: border-color 0.2s;
+  }
+  .btn-buy-tg:hover { border-color: #7c4dff; }
+  .btn-buy-tg i { font-size: 20px; color: #2196F3; }
+  .btn-divider {
+    text-align: center;
+    font-size: 12px;
+    color: #aaa;
+    margin: 2px 0;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .toc-item {
+    background: #fafaff;
+    border: 1px solid #e8e4f0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #4a4a6a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .toc-item i { font-size: 14px; color: #7c4dff; flex-shrink: 0; }
+
+  @media (max-width: 480px) {
+    .budget-grid, .pro-con-row, .ideas-grid, .toc-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 24px; }
+  }
+
+  /* UPSELL */
+  .upsell-section {
+    background: linear-gradient(135deg, #fffbf0 0%, #fff8e1 100%);
+    border-top: 3px solid #ffb300;
+    padding: 52px 24px;
+    text-align: center;
+  }
+  .upsell-inner { max-width: 620px; margin: 0 auto; }
+  .upsell-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #fff3cd; border: 1px solid #ffc107;
+    border-radius: 100px; padding: 6px 14px;
+    font-size: 12px; font-weight: 700; color: #b45309;
+    letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 18px;
+  }
+  .upsell-section h2 { font-size: clamp(22px, 5vw, 32px); font-weight: 800; color: #1a1a2e; margin-bottom: 10px; line-height: 1.25; }
+  .upsell-section h2 span { color: #7c4dff; }
+  .upsell-desc { font-size: 16px; color: #5a4a2e; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .upsell-card { background: #fff; border: 2px solid #ffc107; border-radius: 22px; overflow: hidden; margin-bottom: 24px; text-align: left; box-shadow: 0 8px 32px rgba(255,193,7,0.15); }
+  .upsell-card-header { background: linear-gradient(135deg, #1a1060 0%, #0d1540 100%); padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .upsell-card-header h3 { font-size: 18px; font-weight: 800; color: #fff; }
+  .upsell-card-header p { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 3px; }
+  .price-block { text-align: right; }
+  .price-main { font-size: 28px; font-weight: 900; color: #ffd54f; line-height: 1; }
+  .price-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+  .upsell-card-body { padding: 22px 24px; }
+  .includes-label { font-size: 11px; font-weight: 700; color: #b45309; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+  .gift-badge { display: inline-flex; align-items: center; gap: 6px; background: #f0ebff; border: 1.5px solid rgba(124,77,255,0.4); border-radius: 10px; padding: 10px 14px; font-size: 14px; font-weight: 700; color: #5a2ea0; margin-bottom: 20px; width: 100%; justify-content: center; }
+  .gift-badge i { font-size: 18px; color: #7c4dff; }
+  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+  .toc-item { background: #fafaff; border: 1px solid #e8e4f0; border-radius: 10px; padding: 10px 12px; font-size: 12px; color: #4a4a6a; display: flex; align-items: center; gap: 8px; }
+  .toc-item i { font-size: 14px; color: #7c4dff; flex-shrink: 0; }
+  .buy-btns { display: flex; flex-direction: column; gap: 10px; }
+  .btn-buy-main { display: flex; align-items: center; justify-content: center; gap: 10px; background: #7c4dff; color: #fff; font-size: 16px; font-weight: 700; padding: 16px 24px; border-radius: 14px; text-decoration: none; transition: opacity 0.2s; }
+  .btn-buy-main:hover { opacity: 0.9; }
+  .btn-buy-tg { display: flex; align-items: center; justify-content: center; gap: 10px; background: #fff; color: #1a1a2e; font-size: 15px; font-weight: 600; padding: 14px 24px; border-radius: 14px; text-decoration: none; border: 2px solid #e8e4f0; transition: border-color 0.2s; }
+  .btn-buy-tg:hover { border-color: #7c4dff; }
+  .btn-buy-tg i { font-size: 20px; color: #2196F3; }
+  .btn-divider-or { text-align: center; font-size: 12px; color: #aaa; }
+  @media (max-width: 480px) { .toc-grid { grid-template-columns: 1fr; } }
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><i class="ti ti-sparkles"></i> G.CODE · Чек-лист</div>
+    <h1>Первые <span>$100</span> на ногах<br>за 7–14 дней</h1>
+    <p>Без стримов или с минимальными стримами — пошаговый план для старта с нуля</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">$100<span>+</span></div>
+        <div class="stat-label">за 2 недели</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-label">стримов (опционально)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$200k<span>+</span></div>
+        <div class="stat-label">заработано в нише</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 1. МЕНТАЛЬНАЯ ПОДГОТОВКА -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon"><i class="ti ti-brain"></i></div>
+      <div>
+        <h2>Ментальная подготовка</h2>
+        <p>Прочитай перед стартом — это важно</p>
+      </div>
+    </div>
+
+    <div class="mind-card">
+      <div class="dot"></div>
+      <p>Ноги — один из <strong>самых популярных и безопасных</strong> фетишей в мире</p>
+    </div>
+    <div class="mind-card">
+      <div class="dot"></div>
+      <p>Можно работать <strong>полностью без лица, без голоса и без стримов</strong></p>
+    </div>
+    <div class="mind-card">
+      <div class="dot"></div>
+      <p>Реалистично: первые дни <strong>10–30$</strong>, дальше растёт при регулярных фото</p>
+    </div>
+    <div class="mind-card">
+      <div class="dot"></div>
+      <p>Главное — <strong>качественный педикюр, освещение</strong> и разные ракурсы</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 2. БЮДЖЕТ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon"><i class="ti ti-package"></i></div>
+      <div>
+        <h2>Минимальный набор</h2>
+        <p>Всё что нужно для старта</p>
+      </div>
+    </div>
+
+    <div class="budget-grid">
+      <div class="budget-item"><i class="ti ti-device-mobile"></i> Хороший телефон + штатив</div>
+      <div class="budget-item"><i class="ti ti-bulb"></i> Кольцевая лампа</div>
+      <div class="budget-item"><i class="ti ti-droplet"></i> Педикюр + масло / крем</div>
+      <div class="budget-item"><i class="ti ti-hanger"></i> Разные чулки / туфли</div>
+      <div class="budget-item"><i class="ti ti-shield"></i> VPN</div>
+      <div class="budget-item"><i class="ti ti-mail"></i> Отдельная почта для работы</div>
+    </div>
+    <span class="price-badge">💰 Бюджет: 3 000 – 7 000 руб</span>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 3. ФОРМАТЫ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon"><i class="ti ti-layout-grid"></i></div>
+      <div>
+        <h2>Выбор формата</h2>
+        <p>Вариант А — фото/видео, Вариант Б — со стримами</p>
+      </div>
+    </div>
+
+    <!-- FEETIFY -->
+    <div class="platform-card featured">
+      <div class="platform-header">
+        <div>
+          <h3>Вариант А — Feetify</h3>
+          <p>Только фото и видео, без стримов — рекомендуем новичкам</p>
+        </div>
+        <div class="tag tag-rec"><i class="ti ti-star-filled"></i> Топ выбор</div>
+      </div>
+      <div class="platform-body">
+        <p style="font-size:14px; color:var(--text-mid); margin-bottom:14px;">Feetify — специализированная платформа именно для фетиша ног. Тут узкая аудитория, которая платит за твой контент.</p>
+
+        <div class="pro-con-row">
+          <div class="pros">
+            <div class="pros-label">Плюсы</div>
+            <ul>
+              <li>Платят за активность (Cash Awards)</li>
+              <li>100% выплат для Premium</li>
+              <li>Без стримов</li>
+              <li>Узкая ЦА — фанаты ног</li>
+            </ul>
+          </div>
+          <div class="cons">
+            <div class="cons-label">Минусы</div>
+            <ul>
+              <li>Нужно постить ежедневно</li>
+              <li>Бывают фейки среди покупателей</li>
+              <li>Лучше брать Premium</li>
+              <li>Выводы не мгновенные</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="font-size:13px; font-weight:600; color:var(--text-dark); margin-bottom:10px;">Пошаговый запуск на Feetify:</div>
+        <ul class="steps">
+          <li class="step-item">
+            <div class="step-num">1</div>
+            <div><strong>Зарегистрируйся на Feetify.com как Seller</strong><span>Верификация аккаунта — обычно без лица</span></div>
+          </li>
+          <li class="step-item">
+            <div class="step-num">2</div>
+            <div><strong>Оформи Premium</strong><span>Открывает Cash Awards и 100% выплат</span></div>
+          </li>
+          <li class="step-item">
+            <div class="step-num">3</div>
+            <div><strong>Настрой профиль</strong><span>Красивые фото ног, педикюр, масло</span></div>
+          </li>
+          <li class="step-item">
+            <div class="step-num">4</div>
+            <div><strong>Публикуй 10–20 фото + 3–5 видео ежедневно</strong><span>Тизеры (превью) привлекают покупателей</span></div>
+          </li>
+          <li class="step-item">
+            <div class="step-num">5</div>
+            <div><strong>Принимай кастомы и получай деньги напрямую</strong><span>PayPal, CashApp, крипта — 0% комиссии для Premium</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ВАРИАНТ Б -->
+    <div class="platform-card">
+      <div class="platform-header">
+        <div>
+          <h3>Вариант Б — Live-стриминг</h3>
+          <p>Для тех, кто хочет иногда выходить в эфир</p>
+        </div>
+        <div class="tag tag-soon"><i class="ti ti-bolt"></i> Быстрые деньги</div>
+      </div>
+      <div class="platform-body">
+        <div class="mind-card" style="margin-bottom:0;">
+          <div class="dot"></div>
+          <p>Сайт для стриминга ног можно получить за <strong>990 руб</strong> — включает доступ, поддержку и инструкции. Быстрый старт: <strong>100–500$ за неделю</strong>. Напиши менеджеру в Telegram: <strong>@onlymeangirls2</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 4. ПЛАН НА 7-14 ДНЕЙ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon"><i class="ti ti-calendar"></i></div>
+      <div>
+        <h2>План на 7–14 дней</h2>
+        <p>Конкретный пошаговый роадмап</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-days">Дни 1–3</div>
+        <div class="tl-body">
+          <strong>Старт и контент-база</strong>
+          <span>Сделай 50+ качественных фото, настрой профиль на платформе</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-days">Дни 4–7</div>
+        <div class="tl-body">
+          <strong>Ежедневные посты + общение</strong>
+          <span>Выкладывай каждый день, отвечай на запросы покупателей</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-days">Дни 8–14</div>
+        <div class="tl-body">
+          <strong>Кастомы и рост цен</strong>
+          <span>Добавь персональные заказы, постепенно поднимай стоимость</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-days">Цель</div>
+        <div class="tl-body">
+          <strong>10–30$ в день → $100+ за 2 недели 🎯</strong>
+          <span>При регулярной активности — реалистичный результат</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 5. ИДЕИ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon"><i class="ti ti-camera"></i></div>
+      <div>
+        <h2>8 идей для фото/видео</h2>
+        <p>Контент, который хорошо продаётся</p>
+      </div>
+    </div>
+
+    <div class="ideas-grid">
+      <div class="idea-card"><div class="idea-num">1</div><span>Медленное нанесение масла</span></div>
+      <div class="idea-card"><div class="idea-num">2</div><span>Игра пальчиками</span></div>
+      <div class="idea-card"><div class="idea-num">3</div><span>Ноги в чулках разной плотности</span></div>
+      <div class="idea-card"><div class="idea-num">4</div><span>Высокий подъём и растопыренные пальцы</span></div>
+      <div class="idea-card"><div class="idea-num">5</div><span>Снятие туфель на каблуке</span></div>
+      <div class="idea-card"><div class="idea-num">6</div><span>Массаж ног</span></div>
+      <div class="idea-card"><div class="idea-num">7</div><span>Ноги в воде / с пеной</span></div>
+      <div class="idea-card"><div class="idea-num">8</div><span>Написать имя покупателя на подошве</span></div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 6. БЕЗОПАСНОСТЬ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon"><i class="ti ti-shield-check"></i></div>
+      <div>
+        <h2>Безопасность</h2>
+        <p>Важные правила работы</p>
+      </div>
+    </div>
+
+    <div class="safety-list">
+      <div class="safety-item"><i class="ti ti-eye-off"></i> Работай всегда без лица</div>
+      <div class="safety-item"><i class="ti ti-message-x"></i> Никогда не переходи в личку вне платформы на старте</div>
+      <div class="safety-item"><i class="ti ti-lock"></i> Не давай личные данные покупателям</div>
+      <div class="safety-item"><i class="ti ti-user-check"></i> Для Live — получаешь поддержку и быструю регистрацию</div>
+    </div>
+
+    <div class="note">
+      <i class="ti ti-info-circle"></i>
+      <span>Цены на старте: <strong>5–15$ за набор фото</strong>, <strong>20–50$ за кастомное видео</strong>. Начни с этих цифр, потом поднимай.</span>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- UPSELL -->
+<div class="upsell-section">
+  <div class="upsell-inner">
+    <div class="upsell-badge"><i class="ti ti-crown"></i> Полная дорожная карта</div>
+    <h2>Хочешь пойти глубже?<br><span>Полный гайд Королевы Ножек</span></h2>
+    <p class="upsell-desc">Всё, что нужно для уверенного старта и роста — от психологии и образа до скриптов, трафика и монетизации</p>
+
+    <div class="upsell-card">
+      <div class="upsell-card-header">
+        <div>
+          <h3>Дорожная карта Королевы Ножек</h3>
+          <p>Полный объёмный модуль + чек-лист для продажи</p>
+        </div>
+        <div class="price-block">
+          <div class="price-main">4 590 ₽</div>
+          <div class="price-sub">46,03 $</div>
+        </div>
+      </div>
+      <div class="upsell-card-body">
+
+        <div class="gift-badge">
+          <i class="ti ti-gift"></i> В подарок — доступ к платформе LEAF бесплатно
+        </div>
+
+        <div class="includes-label">Что входит в полный гайд:</div>
+        <div class="toc-grid">
+          <div class="toc-item"><i class="ti ti-heart"></i> С чего начать + подходит ли тебе роль</div>
+          <div class="toc-item"><i class="ti ti-sparkles"></i> Внешний образ и позиционирование</div>
+          <div class="toc-item"><i class="ti ti-users"></i> Где брать аудиторию (площадки 2026)</div>
+          <div class="toc-item"><i class="ti ti-message-circle"></i> Психология мужчин + скрипты</div>
+          <div class="toc-item"><i class="ti ti-gift"></i> Как переводить общение в подарки</div>
+          <div class="toc-item"><i class="ti ti-shield"></i> Границы и защита себя</div>
+          <div class="toc-item"><i class="ti ti-lock"></i> Безопасность и анонимность</div>
+          <div class="toc-item"><i class="ti ti-brain"></i> Психика и устойчивость</div>
+          <div class="toc-item"><i class="ti ti-live-view"></i> Монетизация через стримы</div>
+          <div class="toc-item"><i class="ti ti-chart-arrows"></i> Трафик и закупка аудитории</div>
+        </div>
+
+        <div class="includes-label">Как купить:</div>
+        <div class="buy-btns">
+          <a class="btn-buy-main" href="https://t.me/FhQueen_bot" target="_blank">
+            <i class="ti ti-robot"></i> Купить автоматически в боте @FhQueen_bot
+          </a>
+          <div class="btn-divider-or">или</div>
+          <a class="btn-buy-tg" href="https://t.me/onlymeangirls2" target="_blank">
+            <i class="ti ti-brand-telegram"></i> Написать менеджеру @onlymeangirls2
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA / ЧАТ -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <h2>Войди в чат<br><span>«Код Гейши»</span></h2>
+    <p>Общение с девочками, поддержка и ответы на вопросы — всё внутри приложения G.CODE</p>
+
+    <div class="chat-steps">
+      <div class="chat-step">
+        <div class="chat-step-num">1</div>
+        <div><strong>Скачай приложение G.CODE</strong><span>App Store (iPhone) — ссылка для Android появится скоро</span></div>
+      </div>
+      <div class="chat-step">
+        <div class="chat-step-num">2</div>
+        <div><strong>Открой раздел «Чат» внизу экрана</strong><span>Найди канал «Код Гейши» и нажми «Войти»</span></div>
+      </div>
+      <div class="chat-step">
+        <div class="chat-step-num">3</div>
+        <div><strong>Введи своё имя и пароль ниже 👇</strong><span>Пароль только для участниц — никому не передавай</span></div>
+      </div>
+    </div>
+
+    <div class="password-box">
+      <div class="pw-label">Пароль от чата «Код Гейши»</div>
+      <div class="pw-value">met123</div>
+    </div>
+
+    <a class="btn-chat" href="https://apps.apple.com/ua/app/g-code/id6444358092?l=ru" target="_blank">
+      <i class="ti ti-brand-apple"></i> Скачать G.CODE и войти в чат
+    </a>
+
+    <div class="pw-note"><i class="ti ti-shield-lock"></i> Никому не передавай пароль — он только для участниц курса</div>
+  </div>
+</div>
+
+<footer>G.CODE · Приложение для мышления · «Королева ножек»</footer>
+
+</body>
+</html>
